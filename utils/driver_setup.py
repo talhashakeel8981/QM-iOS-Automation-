@@ -5,8 +5,10 @@ def create_driver():
     opts = XCUITestOptions()
     opts.platform_name = "iOS"
     opts.platform_version = "18.3"          # match installed runtime
-    opts.device_name = "iPhone 16 Pro"      # exactly as listed by simctl
+    opts.device_name = "iPhone 16 Pro"
     opts.app = "/Users/muhammadtalhashakeel/QM_iOS/app/QuranMajeedLite.app"
+    opts.bundle_id = "com.pakdata.QuranMajeedLite"  # add this line
+    # exactly as listed by simctl
     opts.automation_name = "XCUITest"
     opts.use_new_wda = True
     opts.no_reset = True
