@@ -99,7 +99,7 @@ class ReadQuran:
         time.sleep(3)   # wait for page load
 
     # ---------- IMAGE VERIFICATION ----------
-    def VerifyPageByImage(self, reference_filename="anaam.png", crop_top=200, crop_bottom=110):
+    def VerifyPageByImage(self, reference_filename="98.png", crop_top=200, crop_bottom=110):
         base_dir = os.path.dirname(os.path.abspath(__file__))
         reference_path = os.path.normpath(
             os.path.join(base_dir, "..", "image", reference_filename)
@@ -159,3 +159,18 @@ class ReadQuran:
             f"Mismatch detected: {diff_pixels} pixels different "
             f"({similarity:.2f}% similar). See {diff_output}"
         )
+
+    def GoToPage(self, page_number):
+        wait = WebDriverWait(self.driver, 15)
+
+        # STEP 1: open Go To popup (you missed this)
+        go_to_button = (AppiumBy.ACCESSIBILITY_ID, "Go to")
+        self.safe_click(go_to_button)
+
+        # STEP 2: enter page
+        page_field = (AppiumBy.IOS_PREDICATE, 'value == "Page"')
+        field_page = wait.until(EC.presence_of_element_located(page_field))
+
+        field_page.click()
+        field_page.clear()
+        field_page.send_keys(str(page_number))

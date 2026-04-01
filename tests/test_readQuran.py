@@ -46,7 +46,7 @@ class TestReadQuran:
         read_quran.GoToSurahAndAya("Al-Fatiha", 5)
         read_quran.TapGoButton()
 
-    def test_goTo_and_verify_page(self):
+    def Goto_by_Surah_Name_With_AyahNumber(self):
         read_quran = ReadQuran(self.driver)
 
         read_quran.read_quran_module()
@@ -55,4 +55,19 @@ class TestReadQuran:
         read_quran.TapGoButton()
         time.sleep(5)
         read_quran.VerifyPageByImage("anaam.png")
+        time.sleep(5)
+
+    def Goto_by_page_number(self):
+        read_quran = ReadQuran(self.driver)
+
+        read_quran.read_quran_module()
+        read_quran.juzList()
+
+        # new input type (page instead of surah/ayah)
+        read_quran.GoToPage(98)
+
+        read_quran.TapGoButton()
+        time.sleep(5)
+
+        read_quran.VerifyPageByImage("98.png")
         time.sleep(5)
